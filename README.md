@@ -1,1 +1,1 @@
-﻿# oop-in-typescripot
+﻿# oop-in-typescript
