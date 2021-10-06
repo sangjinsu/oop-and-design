@@ -1,4 +1,4 @@
-# Static, 싱글턴, 내포 클래스
+# Static
 
 - 사용언어: typescript
 
