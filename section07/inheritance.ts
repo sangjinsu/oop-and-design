@@ -1,8 +1,17 @@
 class Person {
-  constructor(private firstName: string, private lastName: string) {}
+  protected _email: string
+  constructor(private firstName: string, private lastName: string) {
+    this._email = `${firstName
+      .toLowerCase()
+      .charAt(0)}${lastName.toLowerCase()}@abc.com`
+  }
 
   get fullName() {
     return this.firstName + ' ' + this.lastName
+  }
+
+  get email() {
+    return this._email
   }
 
   changeName(firstName: string, lastName: string) {
@@ -41,5 +50,39 @@ class Teacher extends Person {
 
   set department(department: string) {
     this._department = department
+  }
+
+  set email(email: string) {
+    // this 가능
+    super._email = email
+  }
+}
+
+class FulltimeTeacher extends Teacher {
+  private _officeNumber: number
+
+  constructor(firstName: string, lastName: string, department: string) {
+    super(firstName, lastName, department)
+  }
+
+  get officeNumber() {
+    return this._officeNumber
+  }
+
+  set officeNumber(officeNumber) {
+    this._officeNumber = officeNumber
+  }
+}
+
+class ParttimeTeacher extends Teacher {
+  private weeklyHours: number
+  constructor(
+    firstName: string,
+    lastName: string,
+    department: string,
+    hours: number = 0
+  ) {
+    super(firstName, lastName, department)
+    this.weeklyHours = hours
   }
 }
