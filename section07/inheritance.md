@@ -180,7 +180,7 @@ const teacherList: Teacher[] = [partTime, fullTime]
   console.log(partTime instanceof Teacher)		// true
   ```
 
-- javascript instance 연산자는 생성자의 프로토타입 속성이 객체의 프로토타입 체인에 존재하는지 판별합니다.
+- javascript instanceof 연산자는 생성자의 프로토타입 속성이 개체의 프로토타입 체인에 존재하는지 판별합니다.
 
 - [MDN instanceof](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/instanceof)
 
