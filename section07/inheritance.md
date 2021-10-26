@@ -9,10 +9,19 @@
 
 ```typescript
 class Person {
-  constructor(private firstName: string, private lastName: string) {}
+  protected _email: string
+  constructor(private firstName: string, private lastName: string) {
+    this._email = `${firstName
+      .toLowerCase()
+      .charAt(0)}${lastName.toLowerCase()}@abc.com`
+  }
 
   get fullName() {
     return this.firstName + ' ' + this.lastName
+  }
+
+  get email() {
+    return this._email
   }
 
   changeName(firstName: string, lastName: string) {
@@ -32,13 +41,13 @@ class Student extends Person {
     return this._major
   }
 
-  set major(major: string) {
+  set major(major) {
     this._major = major
   }
 }
 
 class Teacher extends Person {
-  private _department: string | null = null
+  private _department: string
 
   constructor(firstName: string, lastName: string, department: string) {
     super(firstName, lastName)
@@ -52,8 +61,41 @@ class Teacher extends Person {
   set department(department: string) {
     this._department = department
   }
+
+  set email(email: string) {
+    // this 가능
+    super._email = email
+  }
 }
 
+class FulltimeTeacher extends Teacher {
+  private _officeNumber: number | null = null
+
+  constructor(firstName: string, lastName: string, department: string) {
+    super(firstName, lastName, department)
+  }
+
+  get officeNumber() {
+    return this._officeNumber
+  }
+
+  set officeNumber(officeNumber) {
+    this._officeNumber = officeNumber
+  }
+}
+
+class ParttimeTeacher extends Teacher {
+  private weeklyHours: number
+  constructor(
+    firstName: string,
+    lastName: string,
+    department: string,
+    hours: number = 0
+  ) {
+    super(firstName, lastName, department)
+    this.weeklyHours = hours
+  }
+}
 ```
 
 
@@ -108,11 +150,56 @@ class Teacher extends Person {
 
   
 
-#### 상속 vs 컴포지션
+### 상속 vs 컴포지션
 
 - 재사용을 위한 방법
 - 상속과 컴포지션은 상황에 따라 효율적으로 다르게 사용됨  
 
 
 
-###  
+### is-a 관계
+
+```typescript
+const partTime = new ParttimeTeacher('jinsu', 'sang', 'ssaffy', 6)
+const teacher: Teacher = partTime
+
+const fullTime = new FulltimeTeacher('ruslan', 'sang', 'ukrainian')
+const teacherList: Teacher[] = [partTime, fullTime]
+```
+
+
+
+### instanceof
+
+- 특정 클래스인지 확인하는 것이 아님
+
+- 부모 클래스로 검사해도 true
+
+  ```typescript
+  console.log(partTime instanceof ParttimeTeacher) //true
+  console.log(partTime instanceof Teacher)		// true
+  ```
+
+- javascript instance 연산자는 생성자의 프로토타입 속성이 객체의 프로토타입 체인에 존재하는지 판별합니다.
+
+- [MDN instanceof](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/instanceof)
+
+
+
+### 클래스 확인하기
+
+```typescript
+console.log(typeof partTime)
+console.log(partTime.constructor.name)
+console.log(ParttimeTeacher.prototype.isPrototypeOf(partTime))
+// object  => 타입 
+// ParttimeTeacher
+// true
+```
+
+- [javascript 프로토타입 기반 언어](https://developer.mozilla.org/ko/docs/Learn/JavaScript/Objects/Object_prototypes)
+
+- 프로토타입 체인의 가장 첫번째는 Object.prototype 이다 
+
+  
+

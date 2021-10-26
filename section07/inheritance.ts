@@ -31,7 +31,7 @@ class Student extends Person {
     return this._major
   }
 
-  set major(major: string) {
+  set major(major) {
     this._major = major
   }
 }
@@ -59,7 +59,7 @@ class Teacher extends Person {
 }
 
 class FulltimeTeacher extends Teacher {
-  private _officeNumber: number
+  private _officeNumber: number | null = null
 
   constructor(firstName: string, lastName: string, department: string) {
     super(firstName, lastName, department)
@@ -86,3 +86,18 @@ class ParttimeTeacher extends Teacher {
     this.weeklyHours = hours
   }
 }
+
+const partTime = new ParttimeTeacher('jinsu', 'sang', 'ssaffy', 6)
+const teacher: Teacher = partTime
+
+const fullTime = new FulltimeTeacher('ruslan', 'sang', 'ukrainian')
+const teacherList: Teacher[] = [partTime, fullTime]
+
+console.log(teacher.fullName)
+
+console.log(partTime instanceof ParttimeTeacher)
+console.log(partTime instanceof Teacher)
+
+console.log(typeof partTime)
+console.log(partTime.constructor.name)
+console.log(ParttimeTeacher.prototype.isPrototypeOf(partTime))
