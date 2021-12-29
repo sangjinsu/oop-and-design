@@ -1,7 +1,9 @@
-﻿# oop-in-typescript
+﻿﻿# oop-in-typescript + JAVA
 
 | Date       | Content                                                      |
 | ---------- | ------------------------------------------------------------ |
+| 2021.12.29 | 다형성                                                       |
+| 2021.12.13 | 상속과 컴포지션                                              |
 | 2021.10.26 | [상속](https://github.com/sangjinsu/oop-in-typescript/blob/main/section07/inheritance.md) |
 | 2021.10.06 | [Static](https://github.com/ruslanlvivsky/oop-in-typescript/blob/main/section06/static.md), [Singleton](https://github.com/ruslanlvivsky/oop-in-typescript/blob/main/section06/singleton.ts), [내포 클래스](https://github.com/sangjinsu/oop-in-typescript/blob/main/section06/inner-class.md) |
 | 2021.09.21 | [클래스](https://github.com/ruslanlvivsky/oop-in-typescript/blob/main/section04/class.md) |
